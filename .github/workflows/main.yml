@@ -97,6 +97,7 @@ jobs:
             -DCMAKE_BUILD_TYPE=Release \
             -DSDLGPUSHADERCROSS_SHARED=ON \
             -DSDLGPUSHADERCROSS_STATIC=ON \
+            -DSDLGPUSHADERCROSS_SPIRVCROSS_SHARED=OFF \
             -DSDLGPUSHADERCROSS_VENDORED=${{ matrix.platform.vendored }} \
             -DSDLGPUSHADERCROSS_CLI=ON \
             -DSDLGPUSHADERCROSS_WERROR=ON \
