@@ -219,6 +219,11 @@ foreach(target IN LISTS SDL3_gpu_shadercross_targets)
 		# spirv-cross uses C++
 		set_property(TARGET ${target} PROPERTY LINKER_LANGUAGE CXX)
 	endif()
+
+	# MinGW builds should statically link libgcc and libstdc++
+	if(MINGW)
+		target_link_libraries(${target} PRIVATE -static-libgcc -static-libstdc++)
+	endif()
 endforeach()
 
 if(NOT TARGET SDL3_gpu_shadercross::SDL3_gpu_shadercross)
