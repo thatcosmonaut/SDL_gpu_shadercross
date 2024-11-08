@@ -210,19 +210,14 @@ foreach(target IN LISTS SDL3_gpu_shadercross_targets)
 	target_compile_features(${target} PRIVATE c_std_99)
 
 	if(SDLGPUSHADERCROSS_SPIRVCROSS_SHARED)
-		target_link_libraries(${target} PRIVATE spirv-cross-c-shared)
+		target_link_libraries(${target} PRIVATE spirv-cross-c-shared -static-libgcc -static-libstdc++)
 	else()
-		target_link_libraries(${target} PRIVATE spirv-cross-c)
+		target_link_libraries(${target} PRIVATE spirv-cross-c -static-libgcc -static-libstdc++)
 	endif()
 	target_link_libraries(${target} PRIVATE DirectXShaderCompiler::dxcompiler)
 	if(NOT SDLGPUSHADERCROSS_SPIRVCROSS_SHARED)
 		# spirv-cross uses C++
 		set_property(TARGET ${target} PROPERTY LINKER_LANGUAGE CXX)
-	endif()
-
-	# MinGW builds should statically link libgcc and libstdc++
-	if(MINGW)
-		target_link_libraries(${target} PRIVATE -static-libgcc -static-libstdc++)
 	endif()
 endforeach()
 
