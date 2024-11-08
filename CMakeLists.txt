@@ -183,7 +183,7 @@ if(SDLGPUSHADERCROSS_SHARED)
 
 	# MinGW builds should statically link libgcc libstdc++ and libwinpthread
 	if(MINGW)
-		target_link_libraries(SDL3_gpu_shadercross-shared PRIVATE -static-libgcc -static-libstdc++ -lstdc++ -lpthread)
+		target_link_libraries(SDL3_gpu_shadercross-shared PRIVATE -static-libgcc -static-libstdc++ -Wl,-Bstatic -lstdc++ -lpthread)
 	endif()
 endif()
 
