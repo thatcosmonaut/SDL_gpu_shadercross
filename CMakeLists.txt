@@ -180,6 +180,11 @@ if(SDLGPUSHADERCROSS_SHARED)
 	target_link_libraries(SDL3_gpu_shadercross-shared PRIVATE
 		SDL3::SDL3-shared
 	)
+
+	# MinGW builds should statically link libgcc
+	if(MINGW)
+		target_link_libraries(SDL3_gpu_shadercross-shared PRIVATE -static-libgcc -static-libstdc++)
+	endif()
 endif()
 
 
@@ -212,7 +217,7 @@ foreach(target IN LISTS SDL3_gpu_shadercross_targets)
 	if(SDLGPUSHADERCROSS_SPIRVCROSS_SHARED)
 		target_link_libraries(${target} PRIVATE spirv-cross-c-shared)
 	else()
-		target_link_libraries(${target} PRIVATE spirv-cross-c -static-libgcc -static-libstdc++)
+		target_link_libraries(${target} PRIVATE spirv-cross-c)
 	endif()
 	target_link_libraries(${target} PRIVATE DirectXShaderCompiler::dxcompiler)
 	if(NOT SDLGPUSHADERCROSS_SPIRVCROSS_SHARED)
