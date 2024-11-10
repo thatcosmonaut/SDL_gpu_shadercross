@@ -271,11 +271,7 @@ if(SDLGPUSHADERCROSS_INSTALL)
 			COMPONENT devel
 		)
 		if (MSVC)
-			set( CMAKE_PDB_OUTPUT_DIRECTORY     ${PROJECT_BINARY_DIR}/bin )
-			get_target_property( PDBPATH SDL3_gpu_shadercross-shared PDB_OUTPUT_DIRECTORY )
-
-			set( PDBPATH "${PDBPATH}/${CONFIG}/${TARGET_NAME}.pdb" )
-			install( FILES ${PDBPATH} DESTINATION bin/${CONFIG} )
+			install( FILES "${CMAKE_BINARY_DIR}/SDL3_gpu_shadercross.pdb" DESTINATION "bin/SDL3_gpu_shadercross.pdb" )
 		endif()
 	endif()
 	if(TARGET SDL3_gpu_shadercross-static)
