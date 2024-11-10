@@ -271,7 +271,7 @@ if(SDLGPUSHADERCROSS_INSTALL)
 			COMPONENT devel
 		)
 		if (MSVC)
-			get_target_property( PDBPATH ${TARGET_NAME} PDB_OUTPUT_DIRECTORY )
+			get_target_property( PDBPATH SDL3_gpu_shadercross-shared PDB_OUTPUT_DIRECTORY )
 
 			set( PDBPATH "${PDBPATH}/${CONFIG}/${TARGET_NAME}.pdb" )
 			install( FILES ${PDBPATH} DESTINATION bin/${CONFIG} )
