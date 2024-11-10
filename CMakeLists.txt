@@ -270,6 +270,12 @@ if(SDLGPUSHADERCROSS_INSTALL)
 			DESTINATION "${SDLGPUSHADERCROSS_INSTALL_CMAKEDIR}"
 			COMPONENT devel
 		)
+		if (MSVC)
+			get_target_property( PDBPATH ${TARGET_NAME} PDB_OUTPUT_DIRECTORY )
+
+			set( PDBPATH "${PDBPATH}/${CONFIG}/${TARGET_NAME}.pdb" )
+			install( FILES ${PDBPATH} DESTINATION bin/${CONFIG} )
+		endif()
 	endif()
 	if(TARGET SDL3_gpu_shadercross-static)
 		install(TARGETS SDL3_gpu_shadercross-static EXPORT SDL3_gpu_shadercross-static-export
